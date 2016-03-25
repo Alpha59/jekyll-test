@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Main title -->
-                    <a class="navbar-brand" href="/">{{site.title}}</a>
+                    <a class="navbar-brand" href="/{{site.url}}/">{{site.title}}</a>
                 </div>
 
                 <!-- Expanded navigation -->
@@ -37,10 +37,10 @@
                     <!-- Main navigation -->
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="docs/">Home</a>
+                            <a href="/{{site.url}}/docs/">Home</a>
                         </li>
                         <li class="dropdown">
-                            <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                            <a href="/{{site.url}}/docs/index.html#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/{{site.url}}/docs/about/contributing/">Contributing</a></li>
                                 <li><a href="/{{site.url}}/docs/about/license/">License</a></li>
@@ -76,9 +76,9 @@
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
-                        {% for section in page.sections %}
+                        {% for section in page.output.headers %}
                         <li class="active">
-                            <a href="#{{section.href}}">{{section.title}}</a>
+                            <a href="#{{section.id}}">{{section.title}}</a>
                         </li>
                         {% endfor %}
                     </ul>
