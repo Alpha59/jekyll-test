@@ -1,57 +1,20 @@
-/* Table of content
-=====================================
+/*!
+ * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
 
-01. Typography
-02. Misc and reusable element
-03. Preloader
-04. Header
-05. Home
-06. About
-07. Service
-08. Subscribe
-09. Footer
-
-*/
-/* ===========================================================
-    01. Typography
-============================================================ */
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #fff;
+    background-color: #000;
 }
 
-a,
-a:hover,
-a:focus,
-a:active,
-input,
-button,
-textarea {
-  outline: none;
-}
-
-a,
-a:hover,
-a:focus,
-a:active {
-  text-decoration: none;
-}
-
-button {
-  border: none;
-}
-button:focus {
-  outline: none;
-}
-
-a,
-input,
-textarea {
-  -webkit-transition: all 0.3s ease-in-out 0.25s;
-  -o-transition: all 0.3s ease-in-out 0.25s;
-  transition: all 0.3s ease-in-out 0.25s;
+html {
+    width: 100%;
+    height: 100%;
 }
 
 h1,
@@ -60,538 +23,356 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0;
+    margin: 0 0 35px;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 p {
-  font-size: 14px;
-  line-height: 22px;
+    margin: 0 0 25px;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
-/* ===========================================================
-    02. Misc and Re-usable Element
-============================================================ */
-.bg-img {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+@media(min-width:768px) {
+    p {
+        margin: 0 0 35px;
+        font-size: 20px;
+        line-height: 1.6;
+    }
 }
 
-.main-wrapper {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 150px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+a {
+    color: #42dca3;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
-/* overlay gradient solid opacity */
-.atom-overlay,
-.atom-gradient,
-.atom-solid-opacity {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #1d9b6c;
 }
 
-.atom-overlay {
-  background-image: url(http://traivan98.xyz/atom-preview/image-style/images/overlay.png);
-  background-repeat: repeat;
+.light {
+    font-weight: 400;
 }
 
-.page-section {
-  padding-top: 50px;
-  display: none;
-  max-height: 450px;
-  overflow-y: auto;
-}
-.page-section.active {
-  display: block;
+.navbar-custom {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #000;
 }
 
-.page-heading {
-  margin-bottom: 50px;
+.navbar-custom .navbar-brand {
+    font-weight: 700;
 }
 
-.atom-btn-default {
-  padding: 15px 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 13px;
-  background-color: transparent;
-  border: 1px solid;
-  transition: all 0.3s ease;
-  font-weight: 700;
-  border: 1px solid;
-}
-.atom-btn-default:hover, .atom-btn-default:focus {
-  color: #fff;
+.navbar-custom .navbar-brand:focus {
+    outline: 0;
 }
 
-.heading-sepearator {
-  display: inline-block;
-  width: 50px;
-  height: 3px;
-  margin: 30px 0;
+.navbar-custom .navbar-brand .navbar-toggle {
+    padding: 4px 6px;
+    font-size: 16px;
+    color: #fff;
 }
 
-/* helper class */
-.mt-10 {
-  margin-top: 10px;
+.navbar-custom .navbar-brand .navbar-toggle:focus,
+.navbar-custom .navbar-brand .navbar-toggle:active {
+    outline: 0;
 }
 
-.mt-30 {
-  margin-top: 30px;
+.navbar-custom a {
+    color: #fff;
 }
 
-.mt-40 {
-  margin-top: 40px;
+.navbar-custom .nav li a {
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
 }
 
-.mt-50 {
-  margin-top: 50px;
+.navbar-custom .nav li a:hover {
+    outline: 0;
+    color: rgba(255,255,255,.8);
+    background-color: transparent;
 }
 
-.mb-30 {
-  margin-bottom: 30px;
+.navbar-custom .nav li a:focus,
+.navbar-custom .nav li a:active {
+    outline: 0;
+    background-color: transparent;
 }
 
-.mb-40 {
-  margin-bottom: 40px;
+.navbar-custom .nav li.active {
+    outline: 0;
 }
 
-.mb-50 {
-  margin-bottom: 50px;
+.navbar-custom .nav li.active a {
+    background-color: rgba(255,255,255,.3);
 }
 
-/* ===========================================================
-    03. Preloader
-============================================================ */
-#atom-preloader {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 99999999;
-  display: block;
-  background-color: #fff;
+.navbar-custom .nav li.active a:hover {
+    color: #fff;
 }
 
-.atom-preloader-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
-  border-radius: 50%;
-  border: 2px solid;
-  border-top-color: rgba(0, 0, 0, 0.65);
-  border-bottom-color: rgba(0, 0, 0, 0.15);
-  border-left-color: rgba(0, 0, 0, 0.65);
-  border-right-color: rgba(0, 0, 0, 0.15);
-  -webkit-animation: atom-preloader-circle 0.8s linear infinite;
-  animation: atom-preloader-circle 0.8s linear infinite;
+@media(min-width:768px) {
+    .navbar-custom {
+        padding: 20px 0;
+        border-bottom: 0;
+        letter-spacing: 1px;
+        background: 0 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .navbar-custom.top-nav-collapse {
+        padding: 0;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        background: #000;
+    }
 }
 
-@keyframes atom-preloader-circle {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes atom-preloader-circle {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-#content-preloader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
-  border-radius: 50%;
-  border: 2px solid;
-  -webkit-animation: atom-preloader-circle 0.8s linear infinite;
-  animation: atom-preloader-circle 0.8s linear infinite;
-  z-index: 99;
+.intro {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 100px 0;
+    text-align: center;
+    color: #fff;
+    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
-/* ===========================================================
-    04. Header
-============================================================ */
-.atom-header {
-  position: fixed;
-  top: 100px;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
+.intro .intro-body {
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.toggle-bar {
-  width: 45px;
-  height: 45px;
-  display: inline-block;
-  float: left;
-}
-.toggle-bar.exit .bars {
-  background-color: transparent !important;
-}
-.toggle-bar.exit .bars:before {
-  transform: translateY(8px) rotateZ(-45deg);
-}
-.toggle-bar.exit .bars:after {
-  transform: translateY(-8px) rotateZ(45deg);
-}
-.toggle-bar .bars {
-  display: inline-block;
-  width: 23px;
-  height: 2px;
-  position: relative;
-  top: 2px;
-  vertical-align: bottom;
-  -webkit-transition: all ease .3s;
-  -moz-transition: all ease .3s;
-  -o-transition: all ease .3s;
-  transition: all ease .3s;
-}
-.toggle-bar .bars:after, .toggle-bar .bars:before {
-  position: absolute;
-  content: '';
-  display: inline-block;
-  width: 23px;
-  height: 2px;
-  -webkit-transition: all ease .3s;
-  -moz-transition: all ease .3s;
-  -o-transition: all ease .3s;
-  transition: all ease .3s;
-  outline: 1px solid transparent;
-  left: 0;
-}
-.toggle-bar .bars:before {
-  top: -8px;
-}
-.toggle-bar .bars:after {
-  top: 8px;
+.intro .intro-body .brand-heading {
+    font-size: 40px;
 }
 
-.atom-menu {
-  float: left;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-.atom-menu.show-menu {
-  opacity: 1;
-  visibility: visible;
-}
-.atom-menu li {
-  padding: 10px 5px;
-}
-.atom-menu a {
-  display: block;
-  text-transform: uppercase;
-  position: relative;
-}
-.atom-menu a:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 0;
-  height: 1px;
-  transition: all 0.3s ease;
-}
-.atom-menu a:hover:after {
-  width: 100%;
-}
-.atom-menu li.active > a:after {
-  width: 100%;
+.intro .intro-body .intro-text {
+    font-size: 18px;
 }
 
-/* ===========================================================
-    05. Home
-============================================================ */
-#atom-home h1 {
-  font-size: 50px;
+@media(min-width:768px) {
+    .intro {
+        height: 100%;
+        padding: 0;
+    }
+
+    .intro .intro-body .brand-heading {
+        font-size: 100px;
+    }
+
+    .intro .intro-body .intro-text {
+        font-size: 26px;
+    }
 }
 
-.typed-cursor {
-  opacity: 1;
-  -webkit-animation: blink 0.7s infinite;
-  -moz-animation: blink 0.7s infinite;
-  animation: blink 0.7s infinite;
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding: 7px 16px;
+    border: 2px solid #fff;
+    border-radius: 100%!important;
+    font-size: 40px;
+    color: #fff;
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
 }
 
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-moz-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.atom-countdown div {
-  display: inline-block;
-}
-.atom-countdown div span {
-  display: block;
-  width: 100px;
-}
-.atom-countdown div span:first-child {
-  font-size: 3em;
-}
-.atom-countdown div span:last-child {
-  font-size: 1em;
-  text-transform: uppercase;
-  width: 60px;
-  text-align: center;
+.btn-circle:hover,
+.btn-circle:focus {
+    outline: 0;
+    color: #fff;
+    background: rgba(255,255,255,.1);
 }
 
-/* ===========================================================
-    06. About
-============================================================ */
-.tpl-progress {
-  margin-top: 10px;
-  margin-bottom: 50px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  overflow: visible;
-  height: 2px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background-color: #ddd;
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
 }
 
-.tpl-progress .progress-bar {
-  padding-top: 2px;
-  position: relative;
-  overflow: visible;
-  font-size: 13px;
-  text-align: left;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: #333;
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
 }
 
-.tpl-progress .progress-bar > span {
-  display: inline-block;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 3px;
-  position: absolute;
-  top: 0px;
-  right: -5px;
-  text-align: center;
-  line-height: 23px;
-  letter-spacing: 0;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
 }
 
-.popup-gallery a {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-  cursor: url(../images/plus.png), auto;
-}
-.popup-gallery a:hover {
-  border-color: #333;
-}
-.popup-gallery a:hover img {
-  transform: scale(0.8);
-}
-.popup-gallery a img {
-  transition: all 0.3s ease;
+@-moz-keyframes pulse {
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
 }
 
-/* ===========================================================
-    07. Service style
-============================================================ */
-.service {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.service h3 {
-  text-transform: capitalize;
-}
-.service .icon {
-  height: 70px;
-  width: 70px;
-  display: inline-block;
-  line-height: 100px;
-  margin-bottom: 10px;
-}
-.service .icon i {
-  font-size: 40px;
+.content-section {
+    width: 100%;
+    padding-top: 100px;
+    color: #fff;
 }
 
-/* ===========================================================
-    08. Subscribe
-============================================================ */
-#atom-mc-form input {
-  width: 100%;
-  height: 40px;
-  background-color: transparent;
-  border: 1px solid;
-  padding: 0 20px;
-  margin-bottom: 20px;
+.image-back {
+    background: url() no-repeat center center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
-.atom-subscribe-message {
-  display: block;
-  height: 30px;
-  line-height: 15px;
-  font-size: 15px;
-  margin-top: 5px;
+.download-section {
+    width: 100%;
+    padding: 50px 0;
+    color: #fff;
 }
 
-.atom-subscribe-message p {
-  font-size: 15px;
+#map {
+    width: 100%;
+    height: 200px;
+    margin-top: 100px;
 }
 
-.error > p {
-  color: #f25454;
+@media(min-width:767px) {
+    .content-section {
+        padding-top: 250px;
+    }
+
+    .download-section {
+        padding: 100px 0;
+    }
+
+    #map {
+        height: 400px;
+        margin-top: 250px;
+    }
 }
 
-.valid > p {
-  color: green;
+.btn {
+    border-radius: 0;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-/* ===========================================================
-    09. Footer
-============================================================ */
-.atom-footer {
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
+.btn-default {
+    border: 1px solid #42dca3;
+    color: #42dca3;
+    background-color: transparent;
 }
 
-.social-footer a {
-  border-bottom: 1px solid transparent;
-  padding-bottom: 5px;
+.btn-default:hover,
+.btn-default:focus {
+    border: 1px solid #42dca3;
+    outline: 0;
+    color: #000;
+    background-color: #42dca3;
 }
 
-.copyright {
-  font-size: 13px;
-}
-.atom-gradient {
-  background: -webkit-linear-gradient(90deg, rgba(123, 67, 151, 0.5) 10%, rgba(220, 36, 48, 0.7) 90%);
-  /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(90deg, rgba(123, 67, 151, 0.5) 10%, rgba(220, 36, 48, 0.7) 90%);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(90deg, rgba(123, 67, 151, 0.5) 10%, rgba(220, 36, 48, 0.7) 90%);
-  /* IE10 */
-  background: -o-linear-gradient(90deg, rgba(123, 67, 151, 0.5) 10%, rgba(220, 36, 48, 0.7) 90%);
-  /* Opera 11.10+ */
-  background: linear-gradient(90deg, rgba(123, 67, 151, 0.5) 10%, rgba(220, 36, 48, 0.7) 90%);
-  /* W3C */
+ul.banner-social-buttons {
+    margin-top: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-.atom-btn-default,
-input,
-.atom-countdown,
-.atom-menu li.active > a,
-.atom-menu a:hover,
-.service-symbol i,
-.service .icon i {
-  color: #fff;
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        margin-top: 15px;
+    }
 }
 
-.toggle-bar .bars,
-.toggle-bar .bars:before,
-.toggle-bar .bars:after,
-.atom-menu a:after,
-.heading-sepearator {
-  background-color: #fff;
+@media(max-width:767px) {
+    ul.banner-social-buttons li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons li:last-child {
+        margin-bottom: 0;
+    }
 }
 
-#atom-mc-form input,
-.atom-btn-default {
-  border-color: #fff;
+footer {
+    padding: 50px 0;
 }
 
-#content-preloader {
-  border-top-color: rgba(255, 255, 255, 0.65);
-  border-bottom-color: rgba(255, 255, 255, 0.15);
-  border-left-color: rgba(255, 255, 255, 0.65);
-  border-right-color: rgba(255, 255, 255, 0.15);
+footer p {
+    margin: 0;
 }
 
-::-webkit-input-placeholder {
-  color: #fff;
+::-moz-selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255,255,255,.2);
 }
 
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #fff;
+::selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255,255,255,.2);
 }
 
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #fff;
+img::selection {
+    background: 0 0;
 }
 
-:-ms-input-placeholder {
-  color: #fff;
+img::-moz-selection {
+    background: 0 0;
+}
+
+body {
+    webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
