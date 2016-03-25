@@ -9,7 +9,7 @@
     <title>{{site.title}}</title>
     <link href="css_landing/bootstrap.min.css" rel="stylesheet">
     <link href="css_landing/grayscale.css" rel="stylesheet">
-    <link href="css_landing/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 </head>
@@ -38,6 +38,12 @@
                     <a class="page-scroll" href="#{{cont.href}}">{{cont.title}}</a>
                     </li>
                     {% endfor %}
+                    <li>
+                        <a class="page-scroll" href="#github">GitHub</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
                     <li>
                         <a class="page-scroll" href="/docs">Docs</a>
                     </li>
@@ -83,7 +89,7 @@
     {% endfor %}
 
     <!-- Download Section -->
-    <section id="download" class="content-section text-center">
+    <section id="github" class="content-section text-center">
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
