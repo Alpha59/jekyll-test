@@ -1,9 +1,9 @@
-defaults
-    -
-        scope:
-            path: ""
-            type: "pages"
-        values:
-            layout: "default"
-            author: "Alpha59"
-            desc: "This is a descriptional Test!"
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      author: "Alpha59"
+      desc: "This is a descriptional Test!"
