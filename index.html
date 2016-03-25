@@ -13,10 +13,10 @@ title: Testing
                                 <h1 class="text-uppercase animate-start" data-animations="fadeInUp" data-animation-delay="0.5s" data-animation-duration="1s"><strong>{section.title}</strong></h1>
                             </div>
                             <div class="heading-sepearator animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s"></div>
-                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{section.desc}</p>
+                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{{page.title}}</p>
                             {{for subsection in section.subsections}}
                             <h3 class="text-uppercase animate-start" data-animations="fadeInUp" data-animation-delay="0.5s" data-animation-duration="1s"><strong>{subsection.title}</strong></h3>
-                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{subsection.desc}</p>
+                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{{page.desc}}</p>
                             {{endfor}}
                         </div>
                     </div>
