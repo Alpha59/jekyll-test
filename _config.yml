@@ -4,13 +4,3 @@ desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
 github_url: "http://github.com/alpha59/jekyll-test"
-defaults:
-  -
-    scope:
-      path: ""
-      type: pages
-    values:
-      layout: default
-      author: Alpha59
-      title: Site test
-      desc: This is a descriptional Test!
