@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="all" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" media="all" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="css/soon.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="/{{site.url}}/css/soon.css" media="all" />
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     </head>
 
@@ -40,9 +40,9 @@
                                 <span class="bars"></span>
                             </a>
                             <ul class="atom-menu list-inline">
-                                <li class="active"><a href="#atom-home">Home</a></li>
+                                <li class="active"><a href="#home">Home</a></li>
                                 {% for cont in site.content %}
-	<li><a href="#atom-{{cont.href}}">{{cont.title}}</a></li>
+	<li><a href="#{{cont.href}}">{{cont.title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -57,7 +57,7 @@
             <div class="atom-overlay"></div>
             <!--/ overlay -->
             <!-- home -->
-            <div class="page-section active" id="atom-home">
+            <div class="page-section active" id="home">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -72,7 +72,7 @@
             </div>
             {% for cont in site.content %}
                 <!-- about -->
-                <div class="page-section" id="atom-{{cont.href}}">
+                <div class="page-section" id="{{cont.href}}">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
