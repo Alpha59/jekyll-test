@@ -1,7 +1,8 @@
 title: Jekyll Test
 subtitle: A test page
 author: Alpha59
-background: "img/downloads-bg.jpg"
+background: "img/intro-bg.jpg"
+downloads_background: "img/downloads-bg.jpg"
 defaults:
     -
         values:
