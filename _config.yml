@@ -3,7 +3,7 @@ author: Alpha59
 defaults:
     -
         values:
-            layout: soon
+            layout: landing
 desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
