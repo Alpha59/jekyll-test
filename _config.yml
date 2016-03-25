@@ -1,5 +1,9 @@
-title: Jekyll Test Updated
+title: Jekyll_Test_Site
 author: Alpha59
+defaults:
+    -
+        values:
+            layout: soon
 desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
