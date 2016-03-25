@@ -76,7 +76,6 @@
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
-                        {{ output }}
                         {% for section in page.sections %}
                         <li class="active">
                             <a href="#{{section.id}}">{{section.title}}</a>
@@ -89,7 +88,7 @@
             <div class="col-md-9" id="content">
             <canvas class="" id="gitGraph"></canvas>
             <!-- Insert MD Here -->
-            {{ output }}
+            {{ content | markdownify }}
             </div>
 
         </div>
