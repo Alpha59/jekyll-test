@@ -1,7 +1,6 @@
 title: Jekyll Test
 subtitle: A test page
 author: Alpha59
-background: "img/intro-bg.jpg"
 downloads_background: "img/downloads-bg.jpg"
 defaults:
     -
@@ -11,7 +10,6 @@ desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
 github_url: "http://github.com/alpha59/jekyll-test"
-#comment: creating a comment
 background: "http://traivan98.xyz/atom-preview/image-style/images/dark_bg.jpg"
 content:
     -
@@ -27,7 +25,7 @@ content:
                 desc: The second subheader under section 1
     -
         title: Section 2
-        background: "img/downloads-bg.jpg"
+        background: "img/intro-bg.jpg"
         href: section2
         desc: The section section
         subs:
