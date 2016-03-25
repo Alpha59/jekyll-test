@@ -4,3 +4,51 @@ desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
 github_url: "http://github.com/alpha59/jekyll-test"
+content:
+    -
+        title: Section 1
+        href: section1
+        desc: The first section
+        subs:
+            -
+                title: Sub Heading 1
+                desc: The first subheading under section 1
+            -
+                title: Sub Heading 2
+                desc: The second subheader under section 1
+    -
+        title: Section 2
+        href: section2
+        desc: The section section
+        subs:
+            -
+                title: Sub Heading 1
+                desc: The first subheading under section 2
+            -
+                title: Sub Heading 2
+                desc: The second subheader under section 2
+    -
+        title: Section 3
+        href: section3
+        desc: The third section
+        subs:
+            -
+                title: Sub Heading 1
+                desc: The first subheading under section 3
+            -
+                title: Sub Heading 2
+                desc: The second subheader under section 3
+    -
+        title: Section 4
+        href: section4
+        desc: The fourth section
+        subs:
+            -
+                title: Sub Heading 1
+                desc: The first subheading under section 4
+            -
+                title: Sub Heading 2
+                desc: The second subheader under section 4
+
+
+
