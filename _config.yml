@@ -4,6 +4,8 @@ desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
 github_url: "http://github.com/alpha59/jekyll-test"
+#comment: creating a comment
+background: "http://traivan98.xyz/atom-preview/image-style/images/dark_bg.jpg"
 content:
     -
         title: Section 1
