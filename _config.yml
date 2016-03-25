@@ -1,9 +1,15 @@
+title: Jekyll Test
+author: Alpha59
+desc: >
+    This project is a test of the Jekyll static site building tool
+    So far I think its working well!
 defaults:
   -
     scope:
       path: ""
-      type: "pages"
+      type: pages
     values:
-      layout: "default"
-      author: "Alpha59"
-      desc: "This is a descriptional Test!"
+      layout: default
+      author: Alpha59
+      title: Site test
+      desc: This is a descriptional Test!
