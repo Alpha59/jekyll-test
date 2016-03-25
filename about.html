@@ -1,0 +1,27 @@
+---
+layout: default
+title: Testing
+---
+            <!--/ home -->
+            {{for section in sections}}
+            <!-- about -->
+            <div class="page-section" id="atom-{page.href}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="page-heading">
+                                <h1 class="text-uppercase animate-start" data-animations="fadeInUp" data-animation-delay="0.5s" data-animation-duration="1s"><strong>{section.title}</strong></h1>
+                            </div>
+                            <div class="heading-sepearator animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s"></div>
+                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{{page.title}}</p>
+                            {{for subsection in section.subsections}}
+                            <h3 class="text-uppercase animate-start" data-animations="fadeInUp" data-animation-delay="0.5s" data-animation-duration="1s"><strong>{subsection.title}</strong></h3>
+                            <p class="animate-start" data-animations="fadeInUp" data-animation-delay="0.8s" data-animation-duration="1s">{{page.desc}}</p>
+                            {{endfor}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{endfor}}
+        </div>
+        <!--/ END main wrapper section -->
