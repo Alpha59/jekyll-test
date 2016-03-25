@@ -76,15 +76,17 @@
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
-                        {% for section in page.sections %} <!-- NEEDS TO BE SECTIONS FROM MD FILE (HEADERS) -->
-                        <li><a href="#{{section.href}}">{{section.title}}</a></li>
+                        {% for section in page.sections %}
+                        <li class="active">
+                            <a href="#{{section.href}}">{{section.title}}</a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
         <!-- End that section -->
             <div class="col-md-9" id="content">
-            <!--canvas class="col-md-9" id="gitGraph"></canvas-->
+            <canvas class="" id="gitGraph"></canvas>
             <!-- Insert MD Here -->
             {{ content | markdownify }}
             </div>
