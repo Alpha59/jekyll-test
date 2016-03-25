@@ -1,6 +1,7 @@
 title: Jekyll Test
 subtitle: A test page
 author: Alpha59
+background: "imgs/downloads-bg.jpg"
 defaults:
     -
         values:
@@ -25,6 +26,7 @@ content:
                 desc: The second subheader under section 1
     -
         title: Section 2
+        background: "imgs/downloads-bg.jpg"
         href: section2
         desc: The section section
         subs:
@@ -50,6 +52,7 @@ content:
                 desc: The second subheader under section 3
     -
         title: Section 4
+        background: "imgs/downloads-bg.jpg"
         href: section4
         desc: The fourth section
         subs:
