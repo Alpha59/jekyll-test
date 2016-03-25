@@ -5,7 +5,7 @@ downloads_background: "img/downloads-bg.jpg"
 defaults:
     -
         values:
-            layout: landing
+            layout: soon
 desc: >
     This project is a test of the Jekyll static site building tool
     So far I think its working well!
