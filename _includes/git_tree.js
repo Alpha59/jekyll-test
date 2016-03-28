@@ -3,20 +3,19 @@
  ***********************/
 
 var myTemplateConfig = {
-  colors: ["#F00", "#0F0", "#00F"], // branches colors, 1 per column
   branch: {
-    lineWidth: 8,
-    spacingX: 50
+    lineWidth: 5,
+    spacingX: 40
   },
   commit: {
-    spacingY: -80,
+    spacingY: -40,
     dot: {
-      size: 12
+      size: 8
     },
     message: {
       displayAuthor: true,
-      displayBranch: false,
-      displayHash: false,
+      displayBranch: true,
+      displayHash: true,
       font: "normal 12pt Arial"
     },
     tooltipHTMLFormatter: function(commit) {
@@ -138,10 +137,6 @@ gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
 });
 
 // Attach a handler to the commit
-test.commit({
-  message: "Click me!",
-  author: "Nicolas <me@planee.fr>",
-  onClick: function(commit) {
-    console.log("You just clicked my commit.", commit);
-  }
+gitGraph.canvas.addEventListener("commit:click", function(event){
+    console.log("You just clicked a commit. Here is some information about it", event.data);
 });
