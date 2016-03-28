@@ -85,10 +85,8 @@
             {% if page.html == true %}
                 {{ content }}
             {% elsif page.canvas == true %}
+                {{ content }}
                 <canvas class="" id="gitGraph"></canvas>
-                <script>
-                    {{ content }}
-                </script>
             {% else %}
                 {{ content | markdownify }}
             {% endif %}
@@ -104,6 +102,9 @@
         <script src="/{{site.github.repository_name}}/js/base.js"></script>
         <script src="http://gitgraphjs.com/js/gitgraph.min.js"></script>
         {% if page.canvas == true %}
+            <script>
+                {% include git_tree %}
+            </script>
         {% endif %}
     </body>
 </html>
