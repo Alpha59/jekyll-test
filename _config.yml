@@ -4,7 +4,7 @@ defaults:
         values:
             layout: docs
 background: "http://traivan98.xyz/atom-preview/image-style/images/dark_bg.jpg"
-categories_pages: [reference, meta, about]
+categories_pages: [Reference, Meta, About]
 # These are the sections on the home page which need to be filled in,
 # every even one gets an image (be safe, have 4-5 images).
 content:
