@@ -82,8 +82,10 @@
             {{ content | markdownify }}
             <canvas class="" id="gitGraph"></canvas>
             </div>
-
         </div>
+            {{page}}
+            <hr/>
+            {{site}}
         <footer class="col-md-12">
             <hr>
             <p>Created by {{site.github.owner_name}} &copy; {{site.time | date: '%Y'}}</p>
