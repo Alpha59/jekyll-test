@@ -70,7 +70,7 @@
                     <ul class="nav bs-sidenav">
                         {% for section in page.sections %} <!-- This is the content of the pages that we need to find! -->
                         <li class="active">
-                            <a href="#{{section.id}}">{{section.title}}</a>
+                            <a href="#{{section.href}}">{{section.title}}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -83,8 +83,6 @@
             <canvas class="" id="gitGraph"></canvas>
             </div>
         </div>
-            <hr/>
-            {{site.github}}
         <footer class="col-md-12">
             <hr>
             <p>Created by {{site.github.owner_name}} &copy; {{site.time | date: '%Y'}}</p>
