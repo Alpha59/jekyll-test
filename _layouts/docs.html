@@ -46,7 +46,7 @@
                             <ul class="dropdown-menu">
                                 {% for doc in site.pages %}
 	{% if doc.category == cat %}
-	    <li><a href="/{{site.github.repository_name}}/docs/{{cat}}/{{doc.href}}/">{{doc.title}}</a></li>
+	    <li><a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a></li>
 	{% endif %}
                                 {% endfor %}
                             </ul>
@@ -83,9 +83,8 @@
             <canvas class="" id="gitGraph"></canvas>
             </div>
         </div>
-            {{page}}
             <hr/>
-            {{site}}
+            {{site.github}}
         <footer class="col-md-12">
             <hr>
             <p>Created by {{site.github.owner_name}} &copy; {{site.time | date: '%Y'}}</p>
