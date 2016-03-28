@@ -14,7 +14,7 @@
         <link href="/{{site.github.repository_name}}/css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
         <link href="/{{site.github.repository_name}}/css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="/{{site.gitub.repository_name}}/css/highlight.css">
+        <link rel="stylesheet" href="/{{site.github.repository_name}}/css/highlight.css">
         <link href="/{{site.github.repository_name}}/css/extra.css" rel="stylesheet">
     </head>
     <body>
@@ -85,7 +85,7 @@
             {% if page.html == true %}
                 {{ content }}
             {% elsif page.canvas == true %}
-                {{ content }}
+                {{ content | markdownify }}
                 <canvas class="" id="gitGraph"></canvas>
             {% else %}
                 {{ content | markdownify }}
@@ -100,10 +100,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
         <script src="/{{site.github.repository_name}}/js/highlight.pack.js"></script>
         <script src="/{{site.github.repository_name}}/js/base.js"></script>
-        <script src="http://gitgraphjs.com/js/gitgraph.min.js"></script>
+        <script src="https://rawgit.com/nicoespeon/gitgraph.js/develop/src/gitgraph.js"></script>
         {% if page.canvas == true %}
             <script>
-                {% include git_tree %}
+                {% include git_tree.js %}
             </script>
         {% endif %}
     </body>
