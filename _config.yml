@@ -12,7 +12,7 @@ desc: >
     So far I think its working well!
 github_url: "http://github.com/alpha59/jekyll-test"
 background: "http://traivan98.xyz/atom-preview/image-style/images/dark_bg.jpg"
-categories:
+categories_pages:
     - reference
     - meta
     - about
