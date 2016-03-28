@@ -42,12 +42,12 @@
                             </li>
                         {% for cat in site.categories %}
                             Cat {{loop.index}} : {{cat}}
-                        {{endfor}}
+                        {% endfor %}
                         {% for doc in site.pages %}
                             Doc {{loop.index}} : {{doc}}
                             Doc Cat : {{doc.category}}
                             Doc Title: {{doc.title}}
-                        {{endfor}}
+                        {% endfor %}
                         {% for cat in site.categories %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{cat}} <b class="caret"></b></a>
