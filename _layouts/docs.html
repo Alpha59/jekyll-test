@@ -46,6 +46,7 @@
                             <ul class="dropdown-menu">
                                 {% for doc in site.pages %}
 	{% if doc.category == cat %}
+	<!-- {{page.url}} == {{doc.url}} -->
 	<li {% if page.url == doc.url %} class="active" {% endif %}>
 	    <a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a>
 	</li>
@@ -67,9 +68,6 @@
 
         <div class="body container">
             <!-- this title elements need to be generated from the MD file -->
-            {{page.url}}
-            1. {{page.:toc}}
-            2. {{page.toc}}
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
