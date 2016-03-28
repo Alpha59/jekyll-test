@@ -82,8 +82,14 @@
         <!-- End that section -->
             <div class="col-md-9" id="content">
             <!-- Insert MD Here -->
-            {{ content | markdownify }}
-            <canvas class="" id="gitGraph"></canvas>
+            {% if page.html == true %}
+                {{ content }}
+            {% else %}
+                {{ content | markdownify }}
+            {% endif %}
+            {% if page.canvas == true %}
+                <canvas class="" id="gitGraph"></canvas>
+            {% endif %}
             </div>
         </div>
         <footer class="col-md-12">
@@ -96,6 +102,7 @@
         <script src="/{{site.github.repository_name}}/js/highlight.pack.js"></script>
         <script src="/{{site.github.repository_name}}/js/base.js"></script>
         <script src="http://gitgraphjs.com/js/gitgraph.min.js"></script>
+        {% if page.canvas == true %}
         <script>
             var gitgraph = new GitGraph({
                 template: "metro", // or blackarrow
@@ -105,5 +112,6 @@
             });
             // Render a git tree here!
         </script>
+        {% endif %}
     </body>
 </html>
