@@ -66,7 +66,12 @@
 
 
         <div class="body container">
-        <!-- this title elements need to be generated from the MD file -->
+            <!-- this title elements need to be generated from the MD file -->
+            {{page.url}}
+            1. {{page.:toc}}
+            2. {{page.toc}}
+            3. {{ {:toc} | markdownify}}
+            4. {{ {:toc} }}
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
