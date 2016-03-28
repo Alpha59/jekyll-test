@@ -3,6 +3,7 @@
  ***********************/
 
 var myTemplateConfig = {
+  colors: ["#F00", "#0F0", "#00F"], // branches colors, 1 per column
   branch: {
     lineWidth: 5,
     spacingX: 40
@@ -135,8 +136,9 @@ test.merge(master, {
 gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
   console.log("You're over a commit.", "Here is a bunch of data ->", event.data);
 });
-
+/*
 // Attach a handler to the commit
 gitGraph.canvas.addEventListener("commit:click", function(event){
     console.log("You just clicked a commit. Here is some information about it", event.data);
 });
+*/
