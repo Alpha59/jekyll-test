@@ -23,7 +23,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <span class="light">{{site.title}}</span> {{site.subtitle}}
+                    <span class="light">{{site.github.project_title}}</span> {{site.subtitle}}
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,7 +62,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">{{site.github.project_title}}</h1>
                         <h2 class="brand-heading">{{site.subtitle}}</h2>
-                        <p class="intro-text">{{site.github.project_tagline}}<br>Created by {{site.github.project_owner}}</p>
+                        <p class="intro-text">{{site.github.project_tagline}}<br>Created by {{site.github.owner_name}}</p>
                         <a href="#{{site.content[0].href}}" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -113,10 +113,10 @@
                     <a href="http://{{site.github.owner_name}}.github.io/" class="btn btn-default btn-lg"><i class="fa fa-th-large fa-fw"></i> <span class="network-name">{{site.github.owner_name}}</span></a>
                     </li>
                     <li>
-                    <a href="{{site.github.project_url}}" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    <a href="{{site.github.repository_url}}" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
                     <li>
-                    <a href="/{{site.github.repository_name}}//docs/" class="btn btn-default btn-lg"><i class="fa fa-book fa-fw"></i> <span class="network-name">Documentation</span></a>
+                    <a href="/{{site.github.repository_name}}/docs/" class="btn btn-default btn-lg"><i class="fa fa-book fa-fw"></i> <span class="network-name">Documentation</span></a>
                     </li>
                 </ul>
             </div>
