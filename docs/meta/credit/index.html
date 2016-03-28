@@ -1,6 +1,7 @@
 ---
 category: meta
 title: Credit
+href: credit
 ---
 # Credit
 This is about contributing
@@ -16,3 +17,7 @@ because
 ## Where
 
 here
+
+{% for contributer in site.github.contributers %}
+    {{contributer.login}} : {{contributer.contributions}}
+{% endfor %}
