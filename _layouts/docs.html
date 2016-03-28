@@ -37,7 +37,7 @@
                 <div class="navbar-collapse collapse">
                     <!-- Main navigation -->
                     <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li {% if page.url == "/docs/" %} class="active" {% endif %}>
                             <a href="/{{site.github.repository_name}}/docs/">Home</a>
                         </li>
                         {% for cat in site.categories_pages %}
@@ -46,7 +46,9 @@
                             <ul class="dropdown-menu">
                                 {% for doc in site.pages %}
 	{% if doc.category == cat %}
-	    <li><a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a></li>
+	<li {% if page.url == doc.url %} class="active" {% endif %}>
+	    <a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a>
+	</li>
 	{% endif %}
                                 {% endfor %}
                             </ul>
@@ -69,7 +71,7 @@
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
                         {% for section in page.sections %} <!-- This is the content of the pages that we need to find! -->
-                        <li class="active">
+                        <li>
                             <a href="#{{section.href}}">{{section.title}}</a>
                         </li>
                         {% endfor %}
