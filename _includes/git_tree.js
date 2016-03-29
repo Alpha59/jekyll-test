@@ -122,13 +122,8 @@ test.commit({
 
 // Add a tag to a commit
 test.commit({
-  message: "Here you can see something",
+  message: "{{site.github.repository_url}}",
   tag: "a-tag",
-  meta: {
-        data: "Test",
-        each: "More test data",
-        link: "github.com/tree/branch/commit/"
-  },
   onClick: (event) => console.log("You clicked the last commit", event)
 });
 
