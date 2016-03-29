@@ -103,7 +103,10 @@ master.checkout();
 dev.merge();
 
 // Create a "test" branch and merge in into "master" with a custom message and tag.
-var test = gitGraph.branch("test");
+var test = gitGraph.branch({
+    message: "Branching test",
+    onClick: (event) => console.log("You clicked on a branching point", event.data)
+});
 test.commit("Final commit");
 test.merge(master, "My special merge commit message");
 
