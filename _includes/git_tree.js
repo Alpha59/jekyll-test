@@ -119,13 +119,15 @@ test.commit({
 // Add a tag to a commit
 test.commit({
   message: "Here you can see something",
-  tag: "a-tag"
+  tag: "a-tag",
+  onClick: (event) => console.log("You clicked the last commit", event.data)
 });
 
 // Perform a merge, with a tag
 test.merge(master, {
   message: "New release",
-  tag: "v1.0.0"
+  tag: "v1.0.0",
+  onClick: (event) => console.log("You clicked the release info", event.data)
 });
 
 
@@ -135,20 +137,4 @@ test.merge(master, {
 
 gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
   console.log("You're over a commit.", "Here is a bunch of data ->", event.data);
-});
-gitGraph.canvas.addEventListener("merge:mouseover", function(event) {
-  console.log("You're over a merge.", "Here is a bunch of data ->", event.data);
-});
-gitGraph.canvas.addEventListener("tag:mouseover", function(event) {
-  console.log("You're over a tag.", "Here is a bunch of data ->", event.data);
-});
-gitGraph.canvas.addEventListener("branch:mouseover", function(event) {
-  console.log("You're over a branch.", "Here is a bunch of data ->", event.data);
-});
-gitGraph.canvas.addEventListener("checkout:mouseover", function(event) {
-  console.log("You're over a checkout.", "Here is a bunch of data ->", event.data);
-});
-// Attach a click handler to the commit
-gitGraph.canvas.addEventListener("commit:mousedown", function(event) {
-    console.log("You just clicked a commit. Here is some information about it", event.data);
 });
