@@ -128,7 +128,7 @@ test.commit({
         data: "Test",
         each: "More test data",
         link: "github.com/tree/branch/commit/"
-  }
+  },
   onClick: (event) => console.log("You clicked the last commit")
 });
 
@@ -136,7 +136,7 @@ test.commit({
 test.merge(master, {
   message: "New release",
   tag: "v1.0.0",
-  onClick: (event) => console.log("You clicked the release info")
+  onClick: (event) => console.log("You clicked the release Commit")
 });
 
 
