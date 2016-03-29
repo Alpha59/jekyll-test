@@ -129,7 +129,7 @@ test.commit({
         each: "More test data",
         link: "github.com/tree/branch/commit/"
   },
-  onClick: (event) => console.log("You clicked the last commit")
+  onClick: (event) => console.log("You clicked the last commit", event)
 });
 
 // Perform a merge, with a tag
