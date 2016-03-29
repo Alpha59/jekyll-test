@@ -56,6 +56,7 @@ dev.commit("Youhou \\o/");
 // Commit again on "master"
 master.commit("I'm the master !");
 
+dev.merge(master, "Resolving merge conflicts");
 // Advanced commit method with style and specific author (HEAD)
 var commitConfig = {
   dotColor: "white",
