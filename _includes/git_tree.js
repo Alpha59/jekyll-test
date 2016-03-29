@@ -124,14 +124,19 @@ test.commit({
 test.commit({
   message: "Here you can see something",
   tag: "a-tag",
-  onClick: (event) => console.log("You clicked the last commit", event.data)
+  meta: {
+        data: "Test",
+        each: "More test data",
+        link: "github.com/tree/branch/commit/"
+  }
+  onClick: (event) => console.log("You clicked the last commit", event)
 });
 
 // Perform a merge, with a tag
 test.merge(master, {
   message: "New release",
   tag: "v1.0.0",
-  onClick: (event) => console.log("You clicked the release info", event.data)
+  onClick: (event) => console.log("You clicked the release info", event)
 });
 
 
@@ -140,5 +145,5 @@ test.merge(master, {
  ***********************/
 
 gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
-  console.log("You're over a commit.", "Here is a bunch of data ->", event.data);
+  console.log("You're over a commit.", "Here is a bunch of data ->", event);
 });
