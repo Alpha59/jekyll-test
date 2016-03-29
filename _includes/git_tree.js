@@ -136,7 +136,7 @@ test.commit({
 test.merge(master, {
   message: "New release",
   tag: "v1.0.0",
-  onClick: (event) => console.log("You clicked the release Commit")
+  onClick: (event) => console.log("You clicked the release Commit", event)
 });
 
 
@@ -145,5 +145,5 @@ test.merge(master, {
  ***********************/
 
 gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
-  console.log("You're over a commit.", "Here is a bunch of data ->", event.data);
+  console.log("You're over a commit.", "Here is a bunch of data ->", event);
 });
