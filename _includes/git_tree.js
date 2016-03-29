@@ -136,7 +136,19 @@ test.merge(master, {
 gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
   console.log("You're over a commit.", "Here is a bunch of data ->", event.data);
 });
-// Attach a handler to the commit
-gitGraph.canvas.addEventListener("commit:click", function(event) {
+gitGraph.canvas.addEventListener("merge:mouseover", function(event) {
+  console.log("You're over a merge.", "Here is a bunch of data ->", event.data);
+});
+gitGraph.canvas.addEventListener("tag:mouseover", function(event) {
+  console.log("You're over a tag.", "Here is a bunch of data ->", event.data);
+});
+gitGraph.canvas.addEventListener("branch:mouseover", function(event) {
+  console.log("You're over a branch.", "Here is a bunch of data ->", event.data);
+});
+gitGraph.canvas.addEventListener("checkout:mouseover", function(event) {
+  console.log("You're over a checkout.", "Here is a bunch of data ->", event.data);
+});
+// Attach a click handler to the commit
+gitGraph.canvas.addEventListener("commit:mousedown", function(event) {
     console.log("You just clicked a commit. Here is some information about it", event.data);
 });
