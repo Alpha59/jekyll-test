@@ -3,15 +3,8 @@ title: Release
 category: Meta
 previous: #
 next: meta/tree
-href: true
+html: true
 ---
-<h1>This is the Release information</h1>
-<p>
-This is a paragraph test
-</p>
-
-<ul>
-    <li>Hey</li>
-    <li>There</li>
-    <li>Everyone</li>
-</ul>
+{% for releases in site.github.releases %}
+    {{releases}}
+{% endfor %}
