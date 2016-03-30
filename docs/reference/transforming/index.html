@@ -11,7 +11,25 @@ Most of these functions are either applied to each value of the stream and trans
 
 Some functions are not meant to be used with streams at all, and serve primarily for the purpose of creating new functions that can be used with your streams.
 
-Some functions (`adjust`) can be used by passing in functions, or chaining them with a return statement. Either method is permitted.
+Some functions (`adjust`) can be used by passing in functions using composition, or chaining them with a return statement. Either method is permitted.
+
+# Definitions
+
+| Section | Desc | Examples |
+|:--------|:----:|----------|
+| Transform | These functions transform a stream by taking each element of the stream and changing it in some way. |
+| Side-effect | These functions do not change the stream in anyway- simply pass values from the stream to another function for processing |
+| Filter | These functions remove certain elements of the stream using some pre-determined logic. |
+| Branching | These functions create branches in the stream, breaking the flow and returning to the next logical point after the branch has completed (branches are terminated by the `.return()` statement, which can take a value to be returned instead of the original if desired |
+| Blocking | These functions wait until all elements of the stream (including the end of the stream) have arrived before continuing |
+| Non-Blocking | These functions are applied to each individual member of the stream as they arrive. |
+| Combining | These functions take 2 or more streams and create a single stream from them |
+| UnAry | These functions take only a single argument, which is either the entire stream (`head`) or a single element from the stream (`negate`) |
+| NAry | These funcitons take multiple arguments, which may either be static (`add(3)`) or dynamic (`add(x)`) depending on the use case. In this case, x will need to be determined by a functional value.|
+| Non-Stream | These functions can not be applied to a stream, and are normally applied in the context of transforming a different function to better operate on the stream. Functions altered in this way can be chained normally |
+| Chaining | Chaining happens when a function passes the results of it's own return to the last argument of the next. `f(x, g(h(x)))` == h(x).g().f(x)`. |
+| Composed | Composed functions are functions that are placed inside of others in order to pass the results of it's own return to the last arguments of the next. `f(x, g(h(x))) == composed(f(x), g, h(x))` |
+
 
 ## From Arrays
 
