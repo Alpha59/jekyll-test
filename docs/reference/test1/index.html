@@ -9,6 +9,38 @@ Almost all values act as a map or tap function in a chain, but any function can 
 
 Everything is safe, so if a value returns undefined for any function, then the stream will stop execution, but the stream will not end. Catch will not end the stream, but will be called when undefined or null is returned.
 
+The goal of this library is to create safe programming streams that do not require error checking or safe programming- do not require unwrapping, and can work with streams as well as simple arrays. A small example program can be found below:
+
+```
+Stream.$$('h1,h2') // get all h1 and h2 elements from the page
+// optionally you could use const xx = Stream() as a placeholder for everything below.
+    .map(Stream.click) // attaches a click listener to the above elements, creating a new stream.
+    .tap(internals.doSomething) // taps the stream
+    .map(internals.doSomethingElse) // maps the stream to a value
+    .add(4) // adds 4 to the new value
+    .both(R.gt(0), R.lt(5)) // continues the stream if the value is between 0-5
+    .tap() // use that value somehow
+        .map(doMore) // do something
+        .map(doEvenMore) // do even more
+        .return() // return to the original value
+    .map()
+        .sub(3)
+        .pow(2)
+        .negate()
+        .return() // return the transformed value to the original stream
+    .ap(console.log, 'The new Value: ') // prints out the new value of the stream
+    .drain()
+```
+
+## $
+Generates a stream from document.querySelector('');
+
+## $$
+Generates a stream from document.querySelectorAll('');
+
+## $x
+Generates a stream from the XPath of a variable
+
 ## add
 Adds two values together, also see [subtract](#subtract).
 
@@ -93,7 +125,43 @@ Same as allPass, except only 1 of hte functions needs to succeed in order to con
 Applies the list of functions supplied to the stream, transforming the stream into a new stream.
 
 ## append
-Adds a value to the end of the stream.
+Adds a value to the end of the object being passed through the stream.
+
+```
+Stream([[1],[2],[3],[4]])
+    .append(3);
+    // Stream is now [[1,3], [2,3], [3,3], [4,3]]
+```
+
+## apply
+Applies the arguments to the given list of values, this is useful for passing in non-library functions to the service.
+
+```
+Stream([1,2,3,4])
+    .apply(console.log, 'Stream Value: ');
+    //outputs:
+        // Stream Value: 1
+        // Stream Value: 2
+        // Stream Value: 3
+        // Stream Value: 4
+```
+
+## applySpec
+Returns an object of the same structure passed in, but for function in the structure, the stream value will be passed instead of the original.
+
+Stream([1,2,3,4])
+    .applySpec({
+        metric: milesToKm
+        imperial: {
+            feet: R.apply(Math.round, 0, milesToFeet)
+            inches: R.apply(Math.stripInt, milesToInches)
+        }
+    }); // will return the object with metric and imperial measurements.
+
+## both
+See [and](#and)
+
+##
 
 ## elif
 If a stream is determined not to continue, then this can catch the non-continuation and continue it, (if this value passes).
