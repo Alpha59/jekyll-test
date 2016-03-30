@@ -5,3 +5,501 @@ category: Reference
 # Transforming values
 
 The ability to transform values is awesome. This is where the library really comes alive. These can be tacked together to create a stream of transformations which alter the existing stream, manipulating the data of the stream.
+
+# Concepts
+Most of these functions are either applied to each value of the stream and transform them (`add`), or are applied to each value and filter them (`allPass`). Some functions are blocking- meaning they will not pass the stream to the next function until all the values of the stream have been evaluated (`all`), but most are non-blocking. Some functions are ways to add two streams together (`intersperse`), these of course require two streams. For many functions, they are not just transforming the streams- but also applying some value (`add`). If the value being applied is not nessicarily of static value, then *I Will need to figure that out*.
+
+Some functions are not meant to be used with streams at all, and serve primarily for the purpose of creating new functions that can be used with your streams.
+
+Some functions (`adjust`) can be used by passing in functions, or chaining them with a return statement. Either method is permitted.
+
+## From Arrays
+
+### concat
+
+### every
+
+### fill
+
+### filter
+
+### find
+
+### findIndex
+
+### forEach
+
+### includes
+
+### indexOf
+
+### join
+
+### keys
+
+### lastIndexOf
+
+### map
+
+### pop
+
+### push
+
+### reduce
+
+### reduceRight
+
+### reverse
+
+### shift
+
+### slice
+
+### some
+
+### sort
+
+### splice
+
+### values
+
+### unshift
+
+## Add
+Adds a value to the value of the stream. This will only have an effect on streams of numbers
+
+```
+Stream([1,2,3])
+    .add(3) # :-4-5-6-|
+```
+
+## adjust
+Applies a stream to the Nth member of a stream
+
+```
+Stream([1,2,3])
+    .adjust(1)
+        .add(3)
+        .return()
+    ... # :-1-5-3-|
+```
+    Can also be used as
+```
+Stream([1,2,3])
+    .adjust(1, R.add(3))
+    ... # :-1-5-3-|
+```
+
+## all
+Continues executing a stream only if all of the values in the stream pass the condition.
+This function is blocking, and will never continue on an infinite stream.
+
+```
+Stream([1,2,3])
+    .all(R.T) // stream will continue past here
+    .all(R.even) // stream will end here
+```
+
+## allPass
+Continues execution of a stream if the value at this point passes all of the functions passed in.
+
+```
+Stream([1,2,3])
+    .allPass(R.even, R.T) // will fail.
+```
+This can also be represented as
+
+```
+Stream([1,2,3])
+    .allPass()
+        .even()
+        .T()
+        .return()
+```
+
+## and
+
+## anyPass
+
+## ap
+Applies the list of functions supplied to the stream, transforming the stream into a new stream.
+
+## aperature
+
+## append
+
+## apply
+Applies the arguments to the given list of values, this is useful for passing in non-library functions to the service.
+
+## applySpec
+
+## bind
+
+## both
+
+## call
+
+## chain
+
+## clamp
+
+## complement
+
+## compose
+
+## cond
+
+## concat
+
+## contains
+
+## converge
+
+## countBy
+
+## curry
+
+## dec
+Decrement the value by 1.
+
+## defaultTo
+Returns the default if the supplied arguement is `null`, `undefined`, or `NaN`
+
+## difference
+
+## differenceWith
+
+## dissoc
+
+## dissocPath
+
+## divide
+
+## drop
+
+## dropLast
+
+## dropLastWhile
+
+## dropRepeats
+
+## dropRepeatsWith
+
+## dropWhile
+
+## either
+
+## empty
+
+## eqBy
+
+## eqProps
+
+## equals
+
+## evolve
+
+## F
+
+## filter
+
+## find
+
+## findIndex
+
+## findLast
+
+## findLastIndex
+
+## flatten
+
+## flip
+
+## forEach
+
+## fromPairs
+
+## groupBy
+
+## gt
+
+## gte
+
+## has
+Applies to both objects or object prototypes
+
+## head
+
+## identical
+
+## identity
+
+## inc
+
+## indexBy
+
+## indexOf
+
+## init
+
+## insert
+
+## insertAll
+
+## intersection
+
+## intersectionWith
+
+## intersperse
+
+## into
+
+## invert
+
+## invertObj
+
+## is
+
+## isArrayLike
+
+## isEmpty
+
+## isNil
+
+## join
+
+## juxt
+
+## keys
+
+## keysIn
+
+## last
+
+## lastIndexOf
+
+## length
+
+## lt
+
+## lte
+
+## map
+
+## mapAccum
+
+## mapObjIndexed
+
+## match
+
+## mathMod
+
+## max
+
+## maxBy
+
+## mean
+
+## median
+
+## merge
+
+## mergeAll
+
+## mergeWith
+
+## mergeWithKey
+
+## min
+
+## minBy
+
+## modulo
+
+## multiply
+
+## negate
+
+## none
+
+## not
+
+## nth
+
+## nthArg
+
+## objOf
+
+## omit
+
+## once
+
+## or
+
+## over
+
+## pair
+
+## partial
+
+## partialRight
+
+## partition
+
+## path
+
+## pathEq
+
+## pathOr
+
+## pathSatisfies
+
+## pick
+
+## pickAll
+
+## pickBy
+
+## pipe
+
+## pluck
+
+## prepend
+
+## product
+
+## project
+
+## prop
+
+## propEq
+
+## propIs
+
+## propOr
+
+## props
+
+## propSatisfies
+
+## range
+
+## reduceBy
+
+## reduced
+
+## reduceRight
+
+## reject
+
+## remove
+
+## repeat
+
+## replace
+
+## reverse
+
+## scan
+
+## slice
+
+## sort
+
+## sortBy
+
+## split
+
+## splitAt
+
+## splitEvery
+
+## splitWhen
+
+## subtract
+
+## sum
+
+## symmetricDifference
+
+## symmetricDifferenceWith
+
+## T
+
+## tail
+
+## take
+
+## takeLast
+
+## takeLastWhile
+
+## takeWhile
+
+## tap
+
+## test
+
+## times
+
+## toLower
+
+## toPairs
+
+## toString
+
+## toUpper
+
+## transpose
+
+## trim
+
+## type
+
+## unapply
+
+## unfold
+
+## union
+
+## unionWith
+
+## uniq
+
+## uniqBy
+
+## uniqWith
+
+## unless
+
+## unnest
+
+## until
+
+## update
+
+## useWith
+
+## values
+
+## valuesIn
+
+## view
+
+## when
+
+## where
+
+## whereEq
+
+## without
+
+## wrap
+
+## xprod
+
+## zip
+
+## zipObj
+
+## zipWith
