@@ -1,18 +1,132 @@
 ---
 title: Test1
 category: Reference
+sections:
+    -
+        title: Add
+        id: add
+    -
+        title: Adjust
+        id: adjust
+    -
+        title: All
+        id: all
+    -
+        title: All Pass
+        id: allpass
+    -
+        title: Always
+        id: always
+    -
+        title: Else If
+        id: elif
+    -
+        title: Else
+        id: else
+    -
+        title: End If
+        id: endif
+
 ---
-# Test1
-This is about contributing
+# Library reference
+This is how the documentation would appear in a library file, something familiar like.... Ramda.js, this example will use ramda like functions, but with added bonus example of being chained.
 
-## How
+Almost all values act as a map or tap function in a chain, but any function can also be used as a curried standalone function - which will just take a stream of 1 value. These can be used either inside of the stream or not.
 
-nope
+Everything is safe, so if a value returns undefined for any function, then the stream will stop execution, but the stream will not end. Catch will not end the stream, but will be called when undefined or null is returned.
 
-## Why
+## add
+Adds two values together, also see [subtract](#subtract).
 
-because
 
-## Where
 
-here
+```
+Stream([1,2,3,4])
+    .add(2) // will take each number and add 2
+    // stream is now [3,4,5,6]
+    // Stream continues
+```
+
+## adjust
+Applies a function to an array when either the index is equal to the number passed in, or the function passed in returns true
+
+```
+Stream([1,2,3,4])
+    .adjust(R.add(10), 1) // stream is now [1,12,3,4]
+
+Stream([1,2,3,4])
+    .adjust(R.add(10), (x) => x == 3) // Stream is now [1,2,13,4]
+```
+
+
+## All
+Continues a stream only if all of the values of the stream return true for a given function (this will only pass once the end of a stream is reached - not particularly useful for event streams), but useful for any finite length stream. See also [any](#any), [some](#some), and [none](#none).
+```
+Stream([1,2,3,4])
+    .all(x => x > 0)
+    . // this line is reached.
+
+Stream([1,2,3,4])
+    .all(x => x > 1)
+    . // this line is not reached.
+```
+
+## allPass
+Takes an array of functions, and will only continue if all of the values pass through.
+
+```
+Stream([1,2,3,4])
+    .allPass([x => x > 1, x => x > 2])
+    // this will not execute
+
+Stream([1,2,3,4])
+    .allPass([x => x > -1, x => x > -2])
+    // this will execute
+
+```
+
+
+## always
+Always returns the same value. This transforms the current value of the stream to this value.
+
+```
+Stream([1,2,3,4])
+    .always(4) // Stream is now [4,4,4,4]
+
+```
+
+
+
+
+
+
+## elif
+If a stream is determined not to continue, then this can catch the non-continuation and continue it, (if this value passes).
+
+## else
+Same as `.elif`, but continues regardless. This function takes no parameters
+
+## endif
+This marks the end of an if statement in the stream, and will continue the statement. This function takes no parameters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
