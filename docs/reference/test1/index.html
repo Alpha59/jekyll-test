@@ -29,7 +29,18 @@ Stream.$$('h1,h2') // get all h1 and h2 elements from the page
         .negate()
         .return() // return the transformed value to the original stream
     .ap(console.log, 'The new Value: ') // prints out the new value of the stream
-    .drain()
+    .if(R.gt(2))
+        .map(doSomething)
+    .elsif(R.lt(5))
+        .map(doSomething)
+        .tap(doSomething)
+    .else()
+        .map(doSomething)
+        .map(doSomething)
+    .endif()
+    .map(continue) // continue with the stream after the if break.
+    .tap(continue)
+    .end(); // end the stream and allow execution. (drain or observe equivelent).
 ```
 
 ## $
