@@ -126,10 +126,11 @@
             return li;
         }
         var navList =  document.querySelector('.nav.bs-sidenav');
-        document.querySelectorAll('h1, h2, h3, h4').map(
-        function(index, node){
+        Array.prototype.slice.call(
+        document.querySelectorAll('h1, h2, h3, h4')).map(
+        function(node){
             navList.appendChild(makeLI(node.id, node.textContent));
-        })
+        });
         </script>
     </body>
 </html>
