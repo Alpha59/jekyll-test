@@ -7,6 +7,21 @@ category: Reference
 Streams in this library are a safe way to deal with information, which can be created in a variety of ways. A stream is much like an array- or a single object, but can be effected by time. A good example of this, is a Stream that is dependent on clicks. This stream will occur whenever a click occurs, and will only end if the stream is transformed into an empty object.
 
 
+# Note on Currying
+Since we are trying to be as awesome as possible, the library provides an automatic currying definition, where a new function can be created by using an empty version of any of the constructors. The that the constructor would have expected can then be passed in later to create/execute the stream.
+
+```
+const newFn = Stream.just()
+    .map()
+    .map()
+    .map()
+    ...
+    .end()
+
+newFn(x); // this will execute the stream as if you had passed in x originally.
+
+```
+
 ## Stream
 The `Stream` constructor will create an empty stream upon which objects can be placed. Alternatively, a single object or an array can be passed in to create streams.
 
@@ -19,7 +34,7 @@ var mapOverStream = Stream() # :>
     .end();
 // this stream can now be used to attach effects to your stream.
 ```
-A blank version will create an attachable stream object.
+A blank version will create an attachable stream object. This is the only constructor which does not curry, and requires that a constructor be used before calling it.
 
 ```
 Stream({x: 1, y: 2}) # :-x-|

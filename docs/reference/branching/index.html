@@ -1,0 +1,32 @@
+---
+title: Branching Logic
+category: Reference
+---
+# Branching logic
+The branching logic portion is similiar to transducers, but allows you to apply logical branches based on if/else statements into your stream- without disrupting the stream flow.
+
+## if
+
+## elif
+
+## else
+
+## endif
+
+## t
+This is a ternary statement which can be applied immediately to a stream
+
+```
+Stream([1,2,3,4])
+    .t(R.isEven, R.double, R.negate)
+    // new stream is composed of [-1, 4, -3, 8]
+```
+
+## ttap
+This is a ternary statement which can be applied immediately to a stream, but only taps the stream, does not transform it.
+
+```
+Stream([1,2,3,4])
+    .ttap(R.isEven, R.double, R.negate)
+    // new stream is still composed of [1, 2, 3, 4]
+```
