@@ -59,11 +59,11 @@
                         </li>
                         {% endfor %}
                     </ul>
-                    {% assign ipagenext = (pageindex+1) %} ,
-                    {% assign ipageprev = (pageindex-1) %}
-                    {% assign pagenext = site.pages[ipagenext] %}
-                    {% assign pageprev = site.pages[ipageprev] %}
-                    {{pagenext.url}}{{pageprev.url}}
+                    {% assign ipagenext = (pageindex+1) %} {{ipagenext}},
+                    {% assign ipageprev = (pageindex-1) %} {{ipageprev}},
+                    {% assign pagenext = site.pages[ipagenext] %} {{pagenext}},
+                    {% assign pageprev = site.pages[ipageprev] %} {{pageprev}},
+                    {{pagenext.url}}, {{pageprev.url}}
                     <ul class="nav navbar-nav navbar-right">
                             {% if pageprev %}
                                 <li><a rel="prev" href="/{{site.github.repository_name}}{{pageprev.url}}
