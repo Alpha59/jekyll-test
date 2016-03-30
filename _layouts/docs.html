@@ -42,12 +42,15 @@
                         </li>
                         {% for cat in site.categories_pages %}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{cat}} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle {% if page.category == cat %} active {% endif %}" data-toggle="dropdown">{{cat}} <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 {% for doc in site.pages %}
 	{% if doc.category == cat %}
 	<!-- {{page.url}} == {{doc.url}} -->
-	<li {% if page.url == doc.url %} class="active" {% endif %}>
+	<li {% if page.url == doc.url %}
+	    {% assign pageindex = forloop.index %}
+	    class="active"
+	    {% endif %}>
 	    <a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a>
 	</li>
 	{% endif %}
@@ -57,8 +60,19 @@
                         {% endfor %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="disabled"><a rel="next" href="/{{site.github.repository_name}}/docs/{{page.previous}}/"><i class="fa fa-arrow-left"></i> Previous </a></li>
-                            <li ><a rel="prev" href="/{{site.github.repository_name}}/docs/{{page.next}}/">  Next <i class="fa fa-arrow-right"></i></a></li>
+                            {% if site.pages[pageindex-1] %}
+                            <li><a rel="prev" href="/{{site.github.repository_name}}{{site.pages[pageindex-1].url}}
+                            {% else %}
+                            <li class="disabled"><a rel="prev" href="
+                                #
+                            {% endif %}
+                                "><i class="fa fa-arrow-left"></i> Previous </a></li>
+                            {% if site.pages[pageindex+1] %}
+                            <li ><a rel="next" href="/{{site.github.repository_name}}{{site.pages[pageindex+1].url}}
+                            {% else %}
+                            <li class="disabled" ><a rel="next" href="#
+                            {% endif %}
+                            ">  Next <i class="fa fa-arrow-right"></i></a></li>
                             <li><a href="{{site.github.repository_url}}"><i class="fa fa-github"></i> GitHub </a></li>
                     </ul>
                 </div>
