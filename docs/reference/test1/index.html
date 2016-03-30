@@ -14,7 +14,7 @@ The goal of this library is to create safe programming streams that do not requi
 ```
 Stream.$$('h1,h2') // get all h1 and h2 elements from the page
 // optionally you could use const xx = Stream() as a placeholder for everything below.
-    .map(Stream.click) // attaches a click listener to the above elements, creating a new stream.
+    .map(Stream.click) // attaches a click listener to the above elements, creating a new stream for each element.
     .tap(internals.doSomething) // taps the stream
     .map(internals.doSomethingElse) // maps the stream to a value
     .add(4) // adds 4 to the new value
@@ -38,8 +38,11 @@ Stream.$$('h1,h2') // get all h1 and h2 elements from the page
         .map(doSomething)
         .map(doSomething)
     .endif()
+    .unless(R.gt(4)) // kill the stream unless x is greater than 4.
     .map(continue) // continue with the stream after the if break.
     .tap(continue)
+    .catch(handleErrors) // Does something when errors happen
+    .map() // continue post error
     .end(); // end the stream and allow execution. (drain or observe equivelent).
 ```
 
@@ -172,7 +175,82 @@ Stream([1,2,3,4])
 ## both
 See [and](#and)
 
-##
+## throttle
+Drop events that happen at too often of a frequency
+
+## debounce
+Wait for a quiet period in events before continuing with the stream
+
+## loop
+Loops through all the values in the stream, passing in a new seed value each time.
+
+## During
+Create a time sensative window in which items can be passed through.
+
+## filter
+Only allow values that pass certain criteria to be passed through the stream (drop all others)
+
+## catch
+Runs when an error occurs somewhere upstream
+
+## recover
+Recovers from any error by continuing with a new value (like catch, but just returns a default value).
+
+## defaultTo
+Defaults to a given value if the current value is null or undefined.
+
+## continue
+Continues the stream logic but with a new stream value.
+
+## head
+Takes the first value of an array
+
+```
+Stream([[1,2], [3,4], [5,6]])
+    .head()
+    // stream will now be [1, 3, 5]
+```
+
+## tail
+Takes the last value of an array
+
+```
+Stream([[1,2], [3,4], [5,6]])
+    .tail()
+    // stream will now be [2, 4, 6]
+```
+
+## each
+Applies a set of functions to a lower order stream
+
+```
+Stream([[1,2], [3,4], [5,6]])
+    .each()
+        .anyPass([R.eq(1), R.eq(3), R.eq(6))
+        .return()
+    // stream here is now [[1], [3], [6]]
+```
+
+## rest
+Drops the first x values from a lower order stream `Stream.rest(x, [1,2,3,4]`
+
+## xhr
+Creates a stream from an XHR request.
+
+```
+    Stream.xhr({
+        basepath: '',
+        endpoint: '',
+        entity: ''
+    })
+    .map()
+    .catch()
+    .finally()
+
+```
+
+## finally
+Happens regardless of if there is an error or not, this is used for finishing any work that needs to happen.
 
 ## elif
 If a stream is determined not to continue, then this can catch the non-continuation and continue it, (if this value passes).
@@ -182,25 +260,5 @@ Same as `.elif`, but continues regardless. This function takes no parameters
 
 ## endif
 This marks the end of an if statement in the stream, and will continue the statement. This function takes no parameters
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
