@@ -48,7 +48,7 @@
 	{% if doc.category == cat %}
 	<!-- {{page.url}} == {{doc.url}} -->
 	<li {% if page.url == doc.url %}
-	    {% assign pageindex = forloop.index %}
+	    {% assign pageindex = forloop.index0 %}
 	    class="active"
 	    {% endif %}>
 	    <a href="/{{site.github.repository_name}}{{doc.url}}">{{doc.title}}</a>
@@ -59,21 +59,18 @@
                         </li>
                         {% endfor %}
                     </ul>
-                    {{pageindex}},
-                    {% assign ipagenext = pageindex | plus: 1 %} {{ipagenext}},
-                    {% assign ipageprev = pageindex | minus: 1 %} {{ipageprev}},
-                    {% assign pagenext = site.pages[ipagenext] %} {{pagenext}},
-                    {% assign pageprev = site.pages[ipageprev] %} {{pageprev}},
-                    Generated: {{pagenext.url}}, {{pageprev.url}}
-                    Built in: {{page.next.url}}, {{page.previous.url}}
+                    {% assign ipagenext = pageindex | plus: 1 %}
+                    {% assign ipageprev = pageindex | minus: 1 %}
+                    {% assign pagenext = site.pages[ipagenext].url %}
+                    {% assign pageprev = site.pages[ipageprev].url %}
                     <ul class="nav navbar-nav navbar-right">
-                            {% if pageprev %}
-                                <li><a rel="prev" href="/{{site.github.repository_name}}{{pageprev.url}}
+                            {% if pageprev != "/"%}
+                                <li><a rel="prev" href="/{{site.github.repository_name}}{{pageprev}}
                             {% else %}
                                 <li class="disabled"><a rel="prev" href="#
                             {% endif %}"><i class="fa fa-arrow-left"></i> Previous </a></li>
-                            {% if pagenext %}
-                                <li ><a rel="next" href="/{{site.github.repository_name}}{{pagenext.url}}
+                            {% if pagenext != "/" %}
+                                <li ><a rel="next" href="/{{site.github.repository_name}}{{pagenext}}
                             {% else %}
                                 <li class="disabled" ><a rel="next" href="#
                             {% endif %}">  Next <i class="fa fa-arrow-right"></i></a></li>
