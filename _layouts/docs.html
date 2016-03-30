@@ -58,16 +58,20 @@
                             </ul>
                         </li>
                         {% endfor %}
-                    </ul>PageIndex = {{pageindex}} , {{(pageindex+1)}} , {{(pageindex-1)}}
-                    {{site.pages[(pageindex-1)]}}{{site.pages[(pageindex+1)]}}
+                    </ul>
+                    {% assign ipagenext = (pageindex+1) %} ,
+                    {% assign ipageprev = (pageindex-1) %}
+                    {% assign pagenext = site.pages[ipagenext] %}
+                    {% assign pageprev = site.pages[ipageprev] %}
+                    {{pagenext.url}}{{pageprev.url}}
                     <ul class="nav navbar-nav navbar-right">
-                            {% if site.pages[(pageindex-1)] %}
-                                <li><a rel="prev" href="/{{site.github.repository_name}}{{site.pages[(pageindex-1)].url}}
+                            {% if pageprev %}
+                                <li><a rel="prev" href="/{{site.github.repository_name}}{{pageprev.url}}
                             {% else %}
                                 <li class="disabled"><a rel="prev" href="#
                             {% endif %}"><i class="fa fa-arrow-left"></i> Previous </a></li>
-                            {% if site.pages[(pageindex+1)] %}
-                                <li ><a rel="next" href="/{{site.github.repository_name}}{{site.pages[(pageindex+1)].url}}
+                            {% if pagenext %}
+                                <li ><a rel="next" href="/{{site.github.repository_name}}{{pagenext.url}}
                             {% else %}
                                 <li class="disabled" ><a rel="next" href="#
                             {% endif %}">  Next <i class="fa fa-arrow-right"></i></a></li>
