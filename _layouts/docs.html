@@ -86,11 +86,6 @@
             <div class="col-md-3">
                 <div class="bs-sidebar hidden-print affix well" role="complementary">
                     <ul class="nav bs-sidenav">
-                        {% for section in page.sections %} <!-- This is the content of the pages that we need to find! -->
-                        <li>
-                            <a href="#{{section.id}}">{{section.title}}</a>
-                        </li>
-                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -121,5 +116,20 @@
                 {% include git_tree.js %}
             </script>
         {% endif %}
+        <script>
+        function makeLI(id, title){
+            var li = document.createElement("LI");
+            var as = document.createElement("A");
+            as.href = '#'+id;
+            as.textContent = title;
+            li.appendChild(as);
+            return li;
+        }
+        var navList =  document.querySelector('.nav.bs-sidenav');
+        document.querySelectorAll('h1, h2, h3, h4').map(
+        function(index, node){
+            navList.appendChild(makeLI(node.id, node.textContent));
+        })
+        </script>
     </body>
 </html>
