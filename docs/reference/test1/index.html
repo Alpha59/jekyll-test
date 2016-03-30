@@ -1,32 +1,6 @@
 ---
 title: Test1
 category: Reference
-sections:
-    -
-        title: Add
-        id: add
-    -
-        title: Adjust
-        id: adjust
-    -
-        title: All
-        id: all
-    -
-        title: All Pass
-        id: allpass
-    -
-        title: Always
-        id: always
-    -
-        title: Else If
-        id: elif
-    -
-        title: Else
-        id: else
-    -
-        title: End If
-        id: endif
-
 ---
 # Library reference
 This is how the documentation would appear in a library file, something familiar like.... Ramda.js, this example will use ramda like functions, but with added bonus example of being chained.
@@ -95,10 +69,31 @@ Stream([1,2,3,4])
 
 ```
 
+## and
+Returns true if both the arguements passed in are evaluated to true.
 
+```
+Stream([1,2,3,4])
+    .and( x => x >  1, x => < 4) // this will strip the stream down
+    // the stream which reaches here is [2,3]
+```
 
+## any
+Returns true if any of the elements succesfully pass. This will block a stream until a value passes - and then sends all of the values through (before and after the one which succeeds).
 
+```
+Stream([1,2,3,4])
+    .any(x => x > 2) // will block from 1-3, and then pass all values through.
+```
 
+## anyPass
+Same as allPass, except only 1 of hte functions needs to succeed in order to continue the value through the stream.
+
+## ap
+Applies the list of functions supplied to the stream, transforming the stream into a new stream.
+
+## append
+Adds a value to the end of the stream.
 
 ## elif
 If a stream is determined not to continue, then this can catch the non-continuation and continue it, (if this value passes).
