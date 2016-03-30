@@ -1,0 +1,32 @@
+---
+title: Stream Timing
+category: Reference
+---
+# Stream timing
+Since some elements of streams can be time based (primarily user interaction streams), it is important to know how to handle the time dimension of streams.
+
+All times are measured in miliseconds.
+
+## debounce
+Wait until a quiet time in the stream, and then emit the last event before the quiet. Quiet is `x` miliseconds without an event occuring. This is useful for typing events.
+
+## throttle
+Drop `x` number of events before proceeding with the stream on event `x+1`. This is useful for typing or clicking events.
+
+## delay
+Wait a certain number of milliseconds before emitting the events on the stream.
+
+## until
+Only continue with events that have been created before `x` milliseconds has elapsed
+
+## after
+Only continue with events that have been created after `x` milliseconds have elapsed
+
+## during
+Only continue with events taht have happened between `x` and `y` milliseconds.
+
+## timestamp
+Add a timestamp to any values passing through. Objects will have a timestamp appened, and non-objects will be wrapped in an object that has a timestamp.
+
+## await
+Waits for a series of events to fulfill, ignoring the order in which they fullfil- and transmitting them in the order in which they are created.

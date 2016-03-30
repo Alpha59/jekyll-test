@@ -1,0 +1,144 @@
+---
+title: Creation
+category: Reference
+---
+
+# Creating a Stream object
+Streams in this library are a safe way to deal with information, which can be created in a variety of ways. A stream is much like an array- or a single object, but can be effected by time. A good example of this, is a Stream that is dependent on clicks. This stream will occur whenever a click occurs, and will only end if the stream is transformed into an empty object.
+
+
+## Stream
+The `Stream` constructor will create an empty stream upon which objects can be placed. Alternatively, a single object or an array can be passed in to create streams.
+
+```
+var mapOverStream = Stream() # :>
+    .map()
+    .map()
+    .map()
+    ...
+    .end();
+// this stream can now be used to attach effects to your stream.
+```
+A blank version will create an attachable stream object.
+
+```
+Stream({x: 1, y: 2}) # :-x-|
+// This will create a stream of only a single object. Once this stream executes- the object will die.
+    .mapOverStream() // apply the functions from above.
+```
+
+An array of objects can also be used to generate a finite stream.
+
+```
+Stream([x, y, z]) # :-x-y-z-|
+    // Creates a stream that contains the values from the array
+    .mapOverStream() // apply the functions from above.
+```
+
+All of the above examples can be used for either promises, functions that have callbacks in the format return in the format (err, data), or functions that have callbacks in the form (data, err).
+For simplicity though, the below functions are provided which can apply only to certain types of inputs.
+
+## just/of
+This takes a single value and creates a stream which will not iterate at all, it will be a finite stream of length 1.
+
+```
+Stream.just({x:1, y:2, z:3}) # :-{x:1, y:2, z:3}-|
+Stream.of({x:1, y:2, z:3}) # :-{x:1, y:2, z:3}-|
+```
+
+Even if an iterable is passed in, the function will simply treat it as a single object.
+
+## fromPromise
+Will take in a promise and treat it as a single value of the stream
+
+## from
+
+Will Iterate over the top level of a stream.
+
+```
+Stream.fromIterable({x:1, y:2, z:3}) # :-x:1-y:2-z:3}-|
+Stream.fromIterable({x:1, y:{a:1, b:2}, z:3}) # :-x:1-y:{a:1, b:2}-z:3}-|
+Stream.fromIterable('hello') # :-h-e-l-l-o-|
+Stream.fromIterable([1,2,3,4]) # :-1-2-3-4-|
+```
+
+## fromIterableFlat
+Will flatten objects and pass each value through as a stream, the objects themselves will be passed first, and then their inner values.
+
+```
+Stream.fromIterable({x:1, y:2, z:3}) # :-x:1-y:2-z:3}-|
+Stream.fromIterable({x:1, y:{a:1, b:2}, z:3}) # :-x:1-y:{a:1, b:2}-a:1-b:2-z:3}-|
+```
+
+## fromFn
+Will take in a function and treat it as a single value of the stream, with the callback or the returned value being passed on.
+
+## fromFnRev
+The same as `fromFn` but with the `(err, data)` callbacks switched to `(data, err)`.
+
+## fromArray
+Takes in an array
+
+## fromObj
+Takes in an object and iterates through
+
+## fromObjFlat
+Takes in an object and iterates through it flattly.
+
+## $
+Uses `document.querySelector('')` to create a stream
+
+## $$
+Uses `document.querySelectorAll('')` to create a stream
+
+## $x
+Uses the x path of an object to create a stream.
+
+## $#
+Uses the `document.getElementById('')` to create a stream
+
+## $c
+Uses the document.getElementsByClassName('') to create a stream.
+
+## $t
+Uses the document.getElementsByTagName('') to create a stream.
+
+
+## periodic
+Creates an infinte stream that contains events arriving every period miliseconds
+
+```
+Stream(5, x) # :----x----x----x----x---->
+```
+## empty
+Creates a finite stream that has already ended.
+
+## never
+Creates an infinte stream that contains no events.
+
+## iterate
+Creates a stream from a function by passing the old value of the function into the function to find the new value.
+
+## generate
+Creates a stream from an asynchronous generator which yields until the function is called again, and returns the value yielded.
+
+## click / mouseover / mouseoff ...
+Creates a stream of event listeners from the object passed in.
+
+## concat
+Combines two streams together, but adds those events to the end of the first stream.
+
+```
+Stream([1,2,3]) # :-1-2-3-|
+.concat # :-1-2-3-4-5-6-|
+(Stream([4,5,6])) # :-4-5-6-|
+```
+
+## Cycle
+Creates an infinte stream from a finite stream by restarting the stream at the first value everytime it reaches the end.
+
+## merge
+Creates a new stream containing all events from both streams
+
+## mergeArray
+Creates a new stream emitting all the events all the streams passed in the array parameter.
