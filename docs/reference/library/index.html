@@ -46,6 +46,132 @@ Stream.$$('h1,h2') // get all h1 and h2 elements from the page
     .end(); // end the stream and allow execution. (drain or observe equivelent).
 ```
 
+A more useful annotated example using elements and clicks.
+```
+const lenGt = (len) => Stream
+                        .len()
+                        .gt(len)
+                        .r();
+
+const showName = Stream.$$('div.clickable') // create a stream of all div elements with the class clickable
+    .onClick() // create a new stream of event listeners attached to the current stream
+    .prop('target') // get the element (target) from any click events
+    .tap()
+        .dataSet('color')
+        .save('color')
+        .r()
+    .dataSet('name') // Pull the data-name attribute from the event target
+    .allPass() // make sure all of the below are true
+        .isString() // name is a string
+        .lenGt(1) // length of name is greater than 1
+        .r()
+    .save('name') // save the streams current value to the variable name.
+    .$('div.name-disp') // get the first div tag where the class is name-disp
+    .set('innerHTML', this['name']) // set the innerHTML of the element to the data-name attribute from above
+    .remove('className', 'hidden') // remove the hidden class from the element
+    .set(['style', 'color'], this['color']) // add the color to the data-color atttribute saved above.
+    .e();
+```
+This example is relatively trivial, but it takes an element that was clicked, finds some data attributes, and adjusts the elements in the dom accordingly.
+
+If you wish to only enable this option later, you can do something like this:
+
+```
+const showName = Stream.$$('div.clickable') // create a stream of all div elements with the class clickable
+    .onClick() // create a new stream of event listeners attached to the current stream
+    .prop('target') // get the element (target) from any click events
+    .tap()
+        .dataSet('color')
+        .save('color')
+        .r()
+    .dataSet('name') // Pull the data-name attribute from the event target
+    .allPass() // make sure all of the below are true
+        .isString() // name is a string
+        .lenGt(1) // length of name is greater than 1
+        .r()
+    .save('name') // save the streams current value to the variable name.
+    .$('div.name-disp') // get the first div tag where the class is name-disp
+    .set('innerHTML', this['name']) // set the innerHTML of the element to the data-name attribute from above
+    .remove('className', 'hidden') // remove the hidden class from the element
+    .set(['style', 'color'], this['color']) // add the color to the data-color atttribute saved above.
+
+Stream.after(500).showName().e(); // execute after 500ms
+
+const exectuteStream = () => showName().e(); // execute when this function is called.
+```
+
+Or make the stream itself executable with
+
+```
+const showAttribute = (att) => Stream.$$('div.clickable') // create a stream of all div elements with the class clickable
+    .onClick() // create a new stream of event listeners attached to the current stream
+    .prop('target') // get the element (target) from any click events
+    .tap()
+        .dataSet('color')
+        .save('color')
+        .r()
+    .dataSet(att) // Pull the data-name attribute from the event target
+    .allPass() // make sure all of the below are true
+        .isString() // name is a string
+        .lenGt(1) // length of name is greater than 1
+        .r()
+    .save(att) // save the streams current value to the variable name.
+    .$('div.name-disp') // get the first div tag where the class is name-disp
+    .set('innerHTML', this[att]) // set the innerHTML of the element to the data-name attribute from above
+    .remove('className', 'hidden') // remove the hidden class from the element
+    .set(['style', 'color'], this['color']) // add the color to the data-color atttribute saved above.
+
+showAttribute('name').ap(console.log, 'done').e();
+
+```
+
+You can also reduce the number of chaining by composing some functions.
+
+```
+const showAttribute = (att) => Stream.$$('div.clickable')
+    .onClick(R.prop('target'))
+    .tap(R.dataSet('color'), R.save('color'))
+    .dataSet(att)
+    .allPass(R.isString, R.lenGt(1))
+    .save(att)
+    .$('div.name-disp')
+    .set('innerHTML', this[att])
+    .remove('className', 'hidden')
+    .set(['style', 'color'], this['color'])
+
+showAttribute('name').ap(console.log, 'done').e();
+```
+
+All of the above examples do essentially the same thing- but in different ways.
+
+Examining the above, we can see where the code could fail- if there is not a name attribute on one of the clickable divs.
+
+we can handle that, by adding:
+
+```
+showAttribute('name')
+    .catch(console.warn, 'thisElement is unclickable')
+        .set('innerHTML', 'This div has no name') // will set the nameless div's innerHTML to this string.
+        .r()
+    .e();
+```
+The value before the failing value will be passed into the catch statement, which allows us to handle the error safely. The next time the user clicks a div.clickable, the stream will execute normally.
+
+If for some reason we want the stream to end when an error occurs, we can do that with:
+
+```
+showAttribute('name')
+    .catch(console.warn, 'thisElement is unclickable')
+        .set('innerHTML', 'This div has no name') // will set the nameless div's innerHTML to this string.
+        .r(R.kill)
+    .e();
+```
+Which will prevent the stream from executing again if there is an error. We could also have set a default value however if we inserted:
+
+`.recover('Jake')` after the `.dataSet(att)`, which would then never reach the catch statement - simply continuing the stream with the default.
+
+It's easy to see how you could quickly take an HTML document and manipulate it into a fully interactive interface using only these streams.
+
 ## $
 Generates a stream from document.querySelector('');
 
@@ -57,8 +183,6 @@ Generates a stream from the XPath of a variable
 
 ## add
 Adds two values together, also see [subtract](#subtract).
-
-
 
 ```
 Stream([1,2,3,4])

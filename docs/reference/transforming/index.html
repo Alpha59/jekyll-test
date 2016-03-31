@@ -324,15 +324,45 @@ Stream([1,2,3])
 ```
 
 ## and
+* Transforming
+* Non-blocking
+
+Adds a number to a stream element if the element is a number.
+
+```
+A.add(2) # :-3-4-5-|
+```
+
+## adjust
+* Transforming
+* Non-blocking
+Applies a function to stream element located at a specific index.
+
+```
+A.adjust(1)
+    .add(2) # :-1-5-3-|
+    .r()
+```
 
 ## anyPass
+* Terminating/Continuing
+Applies the stream element to a set of functions, if any of them pass- the stream will continue.
+
+```
+A.anyPass()
+    .gt(1)
+    .eq(1) // all elements are either greater than 1 or equal to one, so stream will continue
+    .r()
+```
 
 ## ap
 Applies the list of functions supplied to the stream, transforming the stream into a new stream.
 
 ## aperature
+Creates a moving array stream of streams.
 
 ## append
+Attaches a value to the end of the stream.
 
 ## apply
 Applies the arguments to the given list of values, this is useful for passing in non-library functions to the service.
