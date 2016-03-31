@@ -29,59 +29,246 @@ Some functions (`adjust`) can be used by passing in functions using composition,
 | Non-Stream | These functions can not be applied to a stream, and are normally applied in the context of transforming a different function to better operate on the stream. Functions altered in this way can be chained normally |
 | Chaining | Chaining happens when a function passes the results of it's own return to the last argument of the next. `f(x, g(h(x)))` == h(x).g().f(x)`. |
 | Composed | Composed functions are functions that are placed inside of others in order to pass the results of it's own return to the last arguments of the next. `f(x, g(h(x))) == composed(f(x), g, h(x))` |
+| Terminating/Continuation | Terminating functions will terminate a stream's execution if the conditions of the termination are met, or if the conditions of the continuation are not met.
+| Switching | Switching statements will create a new stream from the previous one, normally of a single value that has been created by the previous stream |
 
+## Basic functions
+
+### e
+This special function tells the stream that execution can now happen.
+
+### r
+This special function terminates a branch of the chain.
 
 ## From Arrays
 
 ### concat
+* Combining
+* Transform
+* NAry
+
+`concat(Stream)`
+
+This function is called as a way to continue a single stream's end with a second stream.
+
+```
+const A = Stream(['1', '2', '3']) # :-1-2-3-|
+const B = Stream(['a', 'b', 'c']) # :-a-b-c-|
+const C = A.concat(B) # :-1-2-3-a-b-c-|
+```
+Events from stream B will be transmitted only after the end signal of Stream A has been reached. In this example, `Stream C` is a new stream which has been created and functions downstream of the concatanation will recieve events from `Stream B` after `Stream A` has completed.
 
 ### every
+* Termination
+* Blocking
+* UnAry
+
+`every(conditionalFN, Stream);`
+
+This function will wait until all events on the stream have been recieved, and determine if every event on the stream passes the conditions.
+
+```
+Stream(['true', 'true', 'true'])
+    .every() // checks for truthyness, stream will continue
+
+Stream(['1', '2', '3'])
+    .every(R.gt(0)) // checks for truthiness, every condition must be met, this stream will pass
+
+Stream(['1', '2', '3'])
+    .every()
+        .allPass()
+            .gt(0)
+            .lt(2)
+            .r() // this will return to the allPass Statement
+        .r() // This will return to the everyStatement
+    ... // The stream will be terminated before reaching this point.
+```
+
+Using the third example from above, we will introduce the concept of aliases and stream functions.
+
+```
+const A = Stream(['1', '2', '3']); // This will be used as an example throughout
+const B = Stream(['a', 'b', 'c']); // This will be used as an example throughout
+
+const between = (min, max) => Stream
+                                .every()
+	.allPass()
+	    .gt(min)
+	    .lt(max)
+	    .r()
+	.r();
+
+A.between(0,2).e(); // This example uses the above alias (between) as a shortcut operator for determining if the stream should continue.
+
+```
+`.e()` is a special function that ends the stream consumption, telling the stream that it is ok to execute. Without the `.e()` function, the stream will not execute.
 
 ### fill
+* Transformation
+* Non-blocking
+
+`fill(fillValue, startIndex, endIndex, Stream);`
+
+This special function will convert elements to a new value when they pass through.
+
+Fill accepts negative start/end indexs and treats them as operations performed on the length of a finite stream. On an infinte stream, negative values will nullify this function.
+
+```
+A.fill('A', 1, 2) # :-1-A-3-|
+```
 
 ### filter
+* filtering
+* Non-Blocking
+
+Filter takes a conditional argument and drops values that evaluate to false.
+
+```
+A.filter(R.lte(2)) # :-1-2-|
+```
 
 ### find
+* Non-Blocking
+* Filter
+
+Find will perform the same function as `filter`, however only the first matching value will be returned.
+
+```
+A.find(R.gt(1)) #:-2-|
+```
 
 ### findIndex
+* Non-blocking
+* Filter
+* Transform
+
+FindIndex will perform the same operation as Find, except returning the index of the value- instead of the value itself.
+
+If a value is passed instead of a function, then the value is used to compare.
+
+```
+A.findIndex(R.gt(1)) #:-1-| // Works as Array.findIndex
+A.findIndex(2) #:-1-| // Works as Array.indexOf
+```
 
 ### forEach
+* Side-effect
+* Non-Blocking
+
+forEach performs an operation on the Stream for each value, and takes a callback function in:
+
+```
+A.forEach((value, index, Stream) => ...)
+```
 
 ### includes
+* Blocking (partial)
+* Terminating
 
-### indexOf
+includes will block until a value fulfilling the callback is passed in, and then will let all values pass. If the end signal is recieved before a passing value is reached, the stream will terminate. All previous values will be passed through once a satisfying value has been recieved.
 
 ### join
+* Transformation
+* Blocking
+* Switching
+
+Join can be used to create a new stream which contains only 1 value, a joined version of all elements of the previous (finite) stream.
+
+```
+A.join() # :-123-|
+```
 
 ### keys
+* Transforming
+
+This function passes only the key's from a stream through- instead of the actual stream.
 
 ### lastIndexOf
+* Filtering
+* Blocking
+
+Finds the last index instance in an Stream, requires a finite stream
+
+### lastOf
+* Filtering
+* Blocking
+
+Finds the last instance in an Stream, requires a finite stream.
 
 ### map
+* Transforming
+* Non-Blocking
+
+Transforms each element that is passed in, This will map over the statements and continue the stream with the new value.
 
 ### pop
+Removes the last element of a finite stream and does not let it pass.
 
 ### push
+Appends a new value to the Stream just before the end signal.
 
 ### reduce
+* Blocking
+* Transforming
+* Switching
+
+Reduces the Stream to a single value, taking a callback of the form
+
+`Stream.reduce((previousValue, currentValue, currentIndex, Stream) => ..., initialValue);`
 
 ### reduceRight
+* Blocking
+* Transforming
+* Switching
+
+This is the same as the reduce, but is blocking because it requires all elements of the Stream to arrive before reducing from Right to left.
 
 ### reverse
+* Blocking
+* Transforming
+
+This will wait until the end signal and then reverse the order in which the Stream continues.
 
 ### shift
+* Non-Blocking
+* Filtering
+
+Removes the first element of the Stream and prevents it from passing.
 
 ### slice
+* Non-blocking
+* Filtering
+
+Prevents certain elements of the stream from passing based on their index.
 
 ### some
+* Blocking (partial)
+* Termination
+
+Allows elements to pass only if at least 1 element satisfies the conditional.
 
 ### sort
+* Blocking
+* Transformation
+
+Orders the elements based on a comparator function once all of the events have arrived. Events are ordered as they arrive, however, all elements must arrive before continuing the stream.
 
 ### splice
+* Non-Blocking
+* Transformation
+
+Removes and inserts elements to the Stream as specified.
 
 ### values
+* Transformation
+* Non-Blocking
+
+Values will drop the keys from an object event and just pass along the values.
 
 ### unshift
+* Transformation
+
+Adds additional elements to the begining of a stream.
 
 ## Add
 Adds a value to the value of the stream. This will only have an effect on streams of numbers
@@ -109,6 +296,7 @@ Stream([1,2,3])
 ```
 
 ## all
+Alias of [every](#every)
 Continues executing a stream only if all of the values in the stream pass the condition.
 This function is blocking, and will never continue on an infinite stream.
 
@@ -119,7 +307,7 @@ Stream([1,2,3])
 ```
 
 ## allPass
-Continues execution of a stream if the value at this point passes all of the functions passed in.
+Continues execution of a stream if the value at this point passes all of the functions passed in
 
 ```
 Stream([1,2,3])
@@ -521,3 +709,205 @@ Applies to both objects or object prototypes
 ## zipObj
 
 ## zipWith
+
+## each
+
+## where
+
+## findWhere
+
+## reject
+
+## every
+
+## contains
+
+## invoke
+
+## pluck
+
+## max
+
+## min
+
+## sortBy
+
+## groupBy
+
+## indexBy
+
+## countBy
+
+## shuffle
+
+## sample
+
+## toArray
+
+## size
+
+## partition
+
+## first
+
+## initial
+
+## last
+
+## rest
+
+## compact
+
+## flatten
+
+## without
+
+## union
+
+## intersection
+
+## difference
+
+## uniq
+
+## zip
+
+## unzip
+
+## object
+
+## indexOf
+
+## lastIndexOf
+
+## sortedIndex
+
+## range
+
+## bind
+
+## bindAll
+
+## partial
+
+## memoize
+
+## delay
+
+## defer
+
+## once
+
+## after
+
+## before
+
+## wrap
+
+## negate
+
+## keys
+
+## allKeys
+
+## values
+
+## mapObject
+
+## pairs
+
+## invert
+
+## create
+
+## functions
+
+## findKey
+
+## extend
+
+## extendOwn
+
+## pick
+
+## omit
+
+## defaults
+
+## clone
+
+## tap
+
+## has
+
+## matcher
+
+## property
+
+## propertyOf
+
+## isEqual
+
+## isMatch
+
+## isEmpty
+
+## isElement
+
+## isArray
+
+## isObject
+
+## isArguments
+
+## isFunction
+
+## isString
+
+## isNumber
+
+## isFinite
+
+## isBoolean
+
+## isDate
+
+## isRegEx
+
+## isError
+
+## isNaN
+
+## isNull
+
+## isUndefined
+
+## isN
+
+## noConflict
+
+## identity
+
+## constant
+
+## noop
+
+## times
+
+## random
+
+## mixin
+
+## iteratee
+
+## uniqueId
+
+## escape
+
+## unescape
+
+## result
+
+## now
+
+## template
